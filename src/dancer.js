@@ -39,12 +39,16 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.timeBetweenSteps = timeBetweenSteps;
   this.step();
   this.setPosition(top, left);
+  this.fixed = false;
 };
 
 makeDancer.prototype.step = function() {
-  //console.log('step');
-  //setTimeout(this.step, this.timeBetweenSteps);
-  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+  // if (this.fixed === false) {
+  var next = setTimeout(this.step.bind(this), this.timeBetweenSteps);
+  // }
+  if (this.fixed === true) {
+    clearTimeout(next);
+  }
 };
 
 makeDancer.prototype.setPosition = function(top, left) {
