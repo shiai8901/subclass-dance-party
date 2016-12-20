@@ -3,7 +3,11 @@
   <head>
     <title>Object Dance Party</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
     <script src="lib/jquery.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+    
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
     <script src="src/bouncyDancer.js"></script>
@@ -12,11 +16,15 @@
   <body>
     <div class="topbar">
       <span class="title">object dance party</span>
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeBlinkyDancer">add a blinky dancer</a>
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeBouncyDancer">add a bouncy dancer</a>    
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeFloatingAwayDancer">add a dancer who floats away</a> 
-      <a href="#" class="lineUpButton">Line Up</a> 
-      <a href="#" class="changeBackground">Change Background</a> 
+      <ul class="nav">
+        <li><a href="#" class="addDancerButton" data-dancer-maker-function-name="makeBlinkyDancer">add a blinky dancer</a></li>
+        <li><a href="#" class="addDancerButton" data-dancer-maker-function-name="makeBouncyDancer">add a bouncy dancer</a></li>    
+        <li><a href="#" class="addDancerButton" data-dancer-maker-function-name="makeFloatingAwayDancer">add a dancer who floats away</a></li> 
+        <li><a href="#" class="lineUpButton">Line Up</a></li> 
+        <li><a href="#" class="lineAndJumpButton">Line And Jump</a></li>
+        <li><a href="#" class="groupButton">Group</a></li>
+        <li><a href="#" class="changeBackground">Change Background</a></li> 
+      </ul>
       </div>
     <script src="src/init.js"></script>
   </body>

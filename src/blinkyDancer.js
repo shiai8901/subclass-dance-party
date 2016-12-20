@@ -20,6 +20,8 @@
 
 var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
+  this.$node.addClass('blinky');
+  // this.$node.draggable();
 };
 
 makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);

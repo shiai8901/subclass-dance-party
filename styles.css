@@ -3,29 +3,93 @@ body, html{
 }
 body{
   margin: 0px;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 200;
   background-image: url("img/background_img/2.jpg");
   background-size: cover;
   background-repeat: none;
-  background-color:#444;
-
+  background-color:#fff;
+  font-family: Helvetica, Arial, sans-serif;
 }
-body, a:link, a:visited, a:active{
+/*body, a:link, a:visited, a:active{
   color: lightblue;
-}
-.title, .addDancerButton{
+}*/
+/*.title, .addDancerButton{
   padding:5px 12px;
   float:right;
-}
+}*/
 .topbar{
-  height:32px;
-  background-color: #555;
+  text-align: center;
+  height:90px;
+  background-color:#303030;
+  padding-top:15px;
+  text-transform: uppercase;
+  z-index: 1000;
 }
 .title{
-  background-color: #777;
+  /*background-color: #777;*/
+  font-size: 22px;
+  color: #fff;
+  font-size: 24px;
 }
+.nav {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.nav li {
+  display: inline-block;
+  padding: 10px 10px;
+  margin:0;
+  border-radius: 2px;
+  border: #303030 solid 1px;
+}
+.nav li:hover {
+  border: #1da4f4 solid 1px;
+  background-color: rgba(29,164,244, .2);
+}
+.nav li a{
+  text-decoration: none;
+  color: #fff;
+}
+
 .dancer{
+  /*height: 180px;
+  width:120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('img/dancer_img/1.gif');*/
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+}
+
+.blinky {
+  height: 180px;
+  width:120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('img/dancer_img/1.gif');
+  position:absolute;
+  border:none;
+}
+
+.fly{
+  height: 160px;
+  width:120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('img/dancer_img/2.gif');
+  position:absolute;
+  border:none;
+}
+
+.bouncy {
+  height: 200px;
+  width:120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('img/dancer_img/3.gif');
+  position:absolute;
+  border:none;
 }

@@ -35,21 +35,53 @@ $(document).ready(function() {
   });
 
 
-  $('body').on('mouseenter', '.dancer', function() {
-    $(this).css({'border-radius':'0','border':'20px solid blue'});
+  // $('body').on('mouseenter', '.dancer', function() {
+  //   $(this).css({'border-radius':'0','border':'20px solid blue'});
+  //   $(this).draggable("enable");
+  // });
+  // $('body').on('mouseleave', '.dancer', function() {
+  //   $(this).css({'border-radius':'10px','border':'10px solid red'});
+  // });
+
+
+  // when mouser over the bouncy dancer, dancer will have a background-color, 
+  // border color, and rotate 360 degree
+  $('body').on('mouseenter', '.bouncy', function() {
+    $(this).css({'border-radius':'60px','border':'10px solid yellow', 'background-color': 'rgba(255,255,255, 0.3)'});
+    $(this).css({'transition':'transform 1s','transform':'rotate(360deg)'});
   });
-  $('body').on('mouseleave', '.dancer', function() {
-    $(this).css({'border-radius':'10px','border':'10px solid red'});
+  $('body').on('mouseleave', '.bouncy', function() {
+    $(this).css({'border':'none','background-color':'rgba(255,255,255, 0)'});
+    $(this).css({'transform':'rotate(0)'});
   });
 
-  $('.lineUpButton').on('click', function() {
+  $('.groupButton').on('click', function() {
     if (dancers[0].fixed === false) {
       for (var i = 0; i < window.dancers.length; i++) {
         dancers[i].fixed = true;
       }
       setTimeout(function() {
-        for (var i = 0; i < window.dancers.length; i++) {
-          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+        var distance = ($('body').width()) / dancers.length;
+        bouncyArray = document.getElementsByClassName('bouncy');
+        blinkyArray = document.getElementsByClassName('blinky');
+        floatingArray = document.getElementsByClassName('fly');
+        for (var i = 0; i < bouncyArray.length; i++) {
+          $(bouncyArray[i]).toggle(true);
+          var left = JSON.stringify(distance * i) + 'px';
+          $(bouncyArray[i]).css({top: '50%', position: 'fixed'});
+          $(bouncyArray[i]).css('left', left);
+        }
+        for (var i = 0; i < blinkyArray.length; i++) {
+          $(blinkyArray[i]).toggle(true);
+          var left = JSON.stringify(distance * (i + bouncyArray.length)) + 'px';
+          $(blinkyArray[i]).css({top: '50%', position: 'fixed'});
+          $(blinkyArray[i]).css('left', left);
+        }
+        for (var i = 0; i < floatingArray.length; i++) {
+          $(floatingArray[i]).toggle(true);
+          var left = JSON.stringify(distance * (i + bouncyArray.length + blinkyArray.length)) + 'px';
+          $(floatingArray[i]).css({top: '50%', position: 'fixed'});
+          $(floatingArray[i]).css('left', left);
         }
       }, 1000);
     } else {
@@ -59,7 +91,89 @@ $(document).ready(function() {
         dancers[i].step();
       }
     }
+  });
 
+  $('.lineAndJumpButton').on('click', function() {
+    if (dancers[0].fixed === false) {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = true;
+      }
+      setTimeout(function() {
+        var distance = ($('body').width()) / dancers.length;
+        for (var i = 0; i < window.dancers.length; i++) {
+          $(dancers[i].$node).toggle(true);
+          var left = JSON.stringify(distance * i) + 'px';
+          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+          $(dancers[i].$node).css('left', left);
+        }
+        for (var i = 0; i < window.dancers.length; i++) {
+          (function(ind) {
+            setTimeout(function(){$(dancers[ind].$node).css({'transition':'transform 1s','transform':'rotate(360deg)'});}, (i + 1) * 500);
+          })(i);
+        }
+      }, 1000);
+    } else {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = false;
+        dancers[i].setPosition(dancers[i].top, dancers[i].left);
+        dancers[i].step();
+      }
+    }
+  });
+
+  $('.lineUpButton').on('click', function() {
+    if (dancers[0].fixed === false) {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = true;
+      }
+      setTimeout(function() {
+        var distance = ($('body').width()) / dancers.length;
+        for (var i = 0; i < window.dancers.length; i++) {
+          $(dancers[i].$node).toggle(true);
+          var left = JSON.stringify(distance * i) + 'px';
+          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+          $(dancers[i].$node).css('left', left);
+        }
+      }, 1000);
+    } else {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = false;
+        dancers[i].setPosition(dancers[i].top, dancers[i].left);
+        dancers[i].step();
+      }
+    }
+  });
+
+  // dancers will get into groups of two, and spin?
+  $('.groupBtn').on('click', function() {
+    if (dancers[0].fixed === false) {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = true;
+      }
+      setTimeout(function() {
+        for (var i = 0; i < window.dancers.length; i++) {
+          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+        }
+      }, 1000);
+
+      var distances = [];
+      for (var i = 0; i < dancers.length - 1; i++) {
+        for (var j = i + 1; j < dancers.length; j++) {
+
+        }
+      }
+
+      setTimeout(function() {
+
+      }, 500);
+
+    } else {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = false;
+        dancers[i].setPosition(dancers[i].top, dancers[i].left);
+        dancers[i].step();
+      }
+    }    
   });
 
   $('.changeBackground').on('click', function() {
@@ -70,4 +184,3 @@ $(document).ready(function() {
     $('body').css('background-image','url("'+ backgroundImg[currentIndex] +'")');
   });
 });
-

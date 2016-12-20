@@ -20,6 +20,7 @@
 
 var makeFloatingAwayDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
+  this.$node.addClass('fly');
 };
 
 makeFloatingAwayDancer.prototype = Object.create(makeDancer.prototype);
