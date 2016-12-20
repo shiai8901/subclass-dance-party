@@ -1,5 +1,9 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.backgroundImg = ["img/background_img/1.jpg",
+  "img/background_img/2.jpg", 
+  "img/background_img/3.jpg",
+  "img/background_img/4.jpg"];
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -30,16 +34,40 @@ $(document).ready(function() {
     window.dancers.push(dancer);
   });
 
-  $('.lineUpButton').on('click', function(){
-    for (var i = 0; i < window.dancers.length; i++) {
-      dancers[i].fixed = true;
-    }
-    setTimeout(function() {
+
+  $('body').on('mouseenter', '.dancer', function() {
+    $(this).css({'border-radius':'0','border':'20px solid blue'});
+  });
+  $('body').on('mouseleave', '.dancer', function() {
+    $(this).css({'border-radius':'10px','border':'10px solid red'});
+  });
+
+  $('.lineUpButton').on('click', function() {
+    if (dancers[0].fixed === false) {
       for (var i = 0; i < window.dancers.length; i++) {
-        $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+        dancers[i].fixed = true;
       }
-    }, 1000);
-    
+      setTimeout(function() {
+        for (var i = 0; i < window.dancers.length; i++) {
+          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
+        }
+      }, 1000);
+    } else {
+      for (var i = 0; i < window.dancers.length; i++) {
+        dancers[i].fixed = false;
+        dancers[i].setPosition(dancers[i].top, dancers[i].left);
+        dancers[i].step();
+      }
+    }
+
+  });
+
+  $('.changeBackground').on('click', function() {
+    var current = $('body').css('background-image');
+    current = current.slice(-26, -2);
+    var currentIndex = backgroundImg.indexOf(current);
+    currentIndex === backgroundImg.length-1 ? currentIndex = 0 : currentIndex++;
+    $('body').css('background-image','url("'+ backgroundImg[currentIndex] +'")');
   });
 });
 
