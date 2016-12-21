@@ -25,6 +25,8 @@ body{
   padding-top:15px;
   text-transform: uppercase;
   z-index: 1000;
+  position: fixed;
+  width:100%;
 }
 .title{
   /*background-color: #777;*/

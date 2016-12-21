@@ -144,36 +144,39 @@ $(document).ready(function() {
     }
   });
 
-  // dancers will get into groups of two, and spin?
-  $('.groupBtn').on('click', function() {
-    if (dancers[0].fixed === false) {
-      for (var i = 0; i < window.dancers.length; i++) {
-        dancers[i].fixed = true;
-      }
-      setTimeout(function() {
-        for (var i = 0; i < window.dancers.length; i++) {
-          $(dancers[i].$node).css({top: '50%', position: 'fixed'});
-        }
-      }, 1000);
+  $(document).keydown(function(ev) {
+    switch(ev.which) {
+        case 37: // left
+          for (var i = 0; i < window.dancers.length; i++) {
+            $(dancers[i].$node).toggle(true);
+            $(dancers[i].$node).css({left: '-=30px'});
+          }
+        break;
 
-      var distances = [];
-      for (var i = 0; i < dancers.length - 1; i++) {
-        for (var j = i + 1; j < dancers.length; j++) {
+        case 38: // up
+          for (var i = 0; i < window.dancers.length; i++) {
+            $(dancers[i].$node).toggle(true);
+            $(dancers[i].$node).css({top: '-=30px'});
+          }
+        break;
 
-        }
-      }
+        case 39: // right
+          for (var i = 0; i < window.dancers.length; i++) {
+            $(dancers[i].$node).toggle(true);
+            $(dancers[i].$node).css({left: '+=30px'});
+          }
+        break;
 
-      setTimeout(function() {
+        case 40: // down
+          for (var i = 0; i < window.dancers.length; i++) {
+            $(dancers[i].$node).toggle(true);
+            $(dancers[i].$node).css({top: '+=30px'});
+          }
+        break;
 
-      }, 500);
-
-    } else {
-      for (var i = 0; i < window.dancers.length; i++) {
-        dancers[i].fixed = false;
-        dancers[i].setPosition(dancers[i].top, dancers[i].left);
-        dancers[i].step();
-      }
-    }    
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
   });
 
   $('.changeBackground').on('click', function() {
